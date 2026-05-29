@@ -70,7 +70,7 @@ const Contact = ({ profileData }) => {
             ...formData
         });
 
-        const response = await fetch('/forms.html', {
+        const response = await fetch('/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -212,6 +212,7 @@ const Contact = ({ profileData }) => {
                             className="contact-form"
                             name="contact"
                             method="POST"
+                            action="/"
                             data-netlify="true"
                             data-netlify-honeypot="bot-field"
                         >
