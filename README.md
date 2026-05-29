@@ -8,7 +8,7 @@ The application has been built using a **decoupled architecture**:
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 1. **Dual Focus Mode Toggles**: Visitors can switch between the **IT / Technical Focus** and **Marketing Focus** views in both the Projects and Experience sections, altering timelines and lists with smooth fade transitions.
 2. **Premium Design System**: Curated typography, translucent glassmorphism panels, persistent dark/light theme, custom scrollbar, and soft blush-pink accents.
@@ -19,42 +19,42 @@ The application has been built using a **decoupled architecture**:
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 NPORTFOLIO/
-├── backend/                  # Python Flask REST API
-│   ├── app.py                # Backend REST endpoints & database initialization
-│   ├── database.db           # SQLite database (created on first run)
-│   ├── requirements.txt      # Python dependencies (Flask, flask-cors)
-│   └── verify_backend.py      # Automated backend API and database test suite
-├── frontend/                 # React Frontend (Vite)
-│   ├── package.json          # Frontend npm configuration & packages
-│   ├── index.html            # Entry layout and Google fonts links
-│   ├── src/
-│   │   ├── main.jsx          # React renderer entry
-│   │   ├── App.jsx           # Main coordinator (theme, coordinate tracker, API pull)
-│   │   ├── App.css           # Styling overrides
-│   │   ├── index.css         # Styling system custom HSL variables
-│   │   └── components/       # Modular reusable components
-│   │       ├── Navbar.jsx    # Sticky bar with theme switch and drawer
-│   │       ├── Hero.jsx      # Subtitle GSAP rotator
-│   │       ├── About.jsx     # Bio cards and skills matrix
-│   │       ├── Projects.jsx  # Toggle active view with custom inline SVGs
-│   │       ├── Experience.jsx# Timelines switcher
-│   │       ├── Education.jsx # B.Sc. TBS coursework, certificates
-│   │       ├── Contact.jsx   # Contact endpoints caller, confetti trigger
-│   │       └── Footer.jsx    # Copyright footer
-│   └── public/
-│       └── docs/
-│           ├── CV_Noutayla_IT.pdf       # IT CV Downloadable
-│           └── CV_Noutayla_Marketing.pdf# Marketing CV Downloadable
-└── README.md                 # Setup & running instructions
+|-- backend/                  # Python Flask REST API
+|   |-- app.py                # Backend REST endpoints & database initialization
+|   |-- database.db           # SQLite database (created on first run)
+|   |-- requirements.txt      # Python dependencies (Flask, flask-cors)
+|   `-- verify_backend.py     # Automated backend API and database test suite
+|-- frontend/                 # React Frontend (Vite)
+|   |-- package.json          # Frontend npm configuration & packages
+|   |-- index.html            # Entry layout and Google fonts links
+|   |-- src/
+|   |   |-- main.jsx          # React renderer entry
+|   |   |-- App.jsx           # Main coordinator (theme, coordinate tracker, API pull)
+|   |   |-- App.css           # Styling overrides
+|   |   |-- index.css         # Styling system custom HSL variables
+|   |   `-- components/       # Modular reusable components
+|   |       |-- Navbar.jsx    # Sticky bar with theme switch and drawer
+|   |       |-- Hero.jsx      # Subtitle GSAP rotator
+|   |       |-- About.jsx     # Bio cards and skills matrix
+|   |       |-- Projects.jsx  # Toggle active view with custom inline SVGs
+|   |       |-- Experience.jsx# Timelines switcher
+|   |       |-- Education.jsx # B.Sc. TBS coursework, certificates
+|   |       |-- Contact.jsx   # Contact endpoints caller, confetti trigger
+|   |       `-- Footer.jsx    # Copyright footer
+|   `-- public/
+|       `-- docs/
+|           |-- CV_Noutayla_IT.pdf        # IT CV Downloadable
+|           `-- CV_Noutayla_Marketing.pdf # Marketing CV Downloadable
+`-- README.md                 # Setup & running instructions
 ```
 
 ---
 
-## 🚀 Setup & Launch Instructions
+## Setup & Launch Instructions
 
 ### 1. Prerequisites
 Ensure you have **Python 3.10+** and **Node.js 18+** installed.
