@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, DownloadCloud, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { apiUrl } from '../api';
+import { apiUrl, useNetlifyForms } from '../api';
 
 // Local SVG component for GitHub to bypass Lucide icon library restriction
 const GithubIcon = ({ size = 18, ...props }) => (
@@ -64,38 +64,68 @@ const Contact = ({ profileData }) => {
         setFormData({ ...formData, [name]: value });
     };
 
+    const submitNetlifyForm = async () => {
+        const encodedData = new URLSearchParams({
+            'form-name': 'contact',
+            ...formData
+        });
+
+        const response = await fetch('/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: encodedData.toString()
+        });
+
+        if (!response.ok) {
+            throw new Error('Netlify form submission failed.');
+        }
+    };
+
+    const submitApiForm = async () => {
+        const response = await fetch(apiUrl('/api/contact'), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || 'Something went wrong. Please check your fields.');
+        }
+
+        return result.message;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmitting(true);
 
         try {
-            const response = await fetch(apiUrl('/api/contact'), {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
+            let successMessage = 'Thank you! Your message has been received.';
 
-            const result = await response.json();
-
-            if (response.ok) {
-                showToast(result.message || 'Thank you! Your message has been received.', 'success');
-                setFormData({ name: '', email: '', subject: '', message: '' });
-                
-                // Fun Confetti trigger on success
-                confetti({
-                    particleCount: 80,
-                    spread: 60,
-                    origin: { y: 0.8 },
-                    colors: ['#f8c8dc', '#db4c7c', '#ffffff']
-                });
+            if (useNetlifyForms) {
+                await submitNetlifyForm();
             } else {
-                showToast(result.error || 'Something went wrong. Please check your fields.', 'error');
+                successMessage = await submitApiForm();
             }
+
+            showToast(successMessage, 'success');
+            setFormData({ name: '', email: '', subject: '', message: '' });
+            
+            confetti({
+                particleCount: 80,
+                spread: 60,
+                origin: { y: 0.8 },
+                colors: ['#f8c8dc', '#db4c7c', '#ffffff']
+            });
         } catch (error) {
             console.error('Submission error:', error);
-            showToast('Failed to submit form. Please verify server connection.', 'error');
+            showToast(error.message || 'Failed to submit form. Please verify server connection.', 'error');
         } finally {
             setSubmitting(false);
         }
@@ -177,7 +207,15 @@ const Contact = ({ profileData }) => {
 
                     {/* Contact Form */}
                     <div className="contact-form-card">
-                        <form onSubmit={handleSubmit} className="contact-form">
+                        <form
+                            onSubmit={handleSubmit}
+                            className="contact-form"
+                            name="contact"
+                            data-netlify="true"
+                            data-netlify-honeypot="bot-field"
+                        >
+                            <input type="hidden" name="form-name" value="contact" />
+                            <input type="hidden" name="bot-field" />
                             <div className="form-group">
                                 <label htmlFor="form-name">Name</label>
                                 <input 

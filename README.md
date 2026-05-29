@@ -138,58 +138,25 @@ Ensure you have **Python 3.10+** and **Node.js 18+** installed.
 
 ---
 
-## Deployment
+## Free Deployment
 
-Recommended setup:
+Recommended free setup:
 
-- **Backend API**: Render Web Service
-- **Frontend site**: Netlify
+- **Frontend site**: Netlify Free
+- **Contact form**: Netlify Forms
+- **Backend API**: Optional, only needed for local development or if you later choose a paid/free Python host
 
-This keeps Gmail SMTP secrets on the backend only. Never add your real `backend/.env` file to GitHub.
+The public site can run without the Flask backend because the React app includes fallback portfolio data and uses Netlify Forms in production.
 
 ### 1. Push the Project to GitHub
 
-Create a GitHub repository and push this project. The deployment config files are already included:
+Create a GitHub repository and push this project. The deployment config file is already included:
 
-- `render.yaml` for the Flask API
 - `netlify.toml` for the React/Vite frontend
 
-### 2. Deploy the Backend on Render
+### 2. Deploy the Frontend on Netlify
 
-In Render, create a new Blueprint/Web Service from the GitHub repo. The service uses:
-
-```text
-Root Directory: backend
-Build Command: pip install -r requirements.txt
-Start Command: gunicorn app:app
-Health Check Path: /api/health
-```
-
-Set these environment variables on Render:
-
-```env
-FLASK_DEBUG=false
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USE_TLS=true
-SMTP_USE_SSL=false
-SMTP_USERNAME=noutaylanefzaoui@gmail.com
-SMTP_PASSWORD=your-real-gmail-app-password
-MAIL_TO_EMAIL=noutaylanefzaoui@gmail.com
-MAIL_FROM_EMAIL=noutaylanefzaoui@gmail.com
-MAIL_FROM_NAME=Noutayla Portfolio
-CORS_ORIGINS=https://your-netlify-site.netlify.app
-```
-
-After deploy, Render gives you an API URL like:
-
-```text
-https://noutayla-portfolio-api.onrender.com
-```
-
-### 3. Deploy the Frontend on Netlify
-
-In Netlify, create a new site from the same GitHub repo. The root `netlify.toml` sets:
+In Netlify, create a new site from the GitHub repo. The root `netlify.toml` sets:
 
 ```text
 Base Directory: frontend
@@ -197,10 +164,18 @@ Build Command: npm run build
 Publish Directory: dist
 ```
 
-Set this Netlify environment variable before deploying:
+You do not need to set `VITE_API_BASE_URL` for the free Netlify-only deploy. If it is empty, the site uses the built-in portfolio data and submits contact messages through Netlify Forms.
 
-```env
-VITE_API_BASE_URL=https://your-render-api-url.onrender.com
+### 3. View Contact Messages
+
+After the first deploy, Netlify should detect the `contact` form. You can view submissions in:
+
+```text
+Netlify Dashboard > Your Site > Forms
 ```
 
-Then deploy the site. After Netlify gives you the final site URL, copy it back into Render's `CORS_ORIGINS` value and redeploy/restart the backend.
+### Optional: Deploy the Flask Backend Later
+
+If you later deploy the Flask backend somewhere, set `VITE_API_BASE_URL` on Netlify to that backend URL and set `VITE_CONTACT_PROVIDER=api`.
+
+Never add your real `backend/.env` file to GitHub.

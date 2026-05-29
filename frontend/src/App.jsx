@@ -7,7 +7,7 @@ import Experience from './components/Experience';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import { apiUrl } from './api';
+import { apiUrl, hasApiBackend } from './api';
 import { ArrowUp } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -195,6 +195,10 @@ function App() {
 
         // Fetch dynamic portfolio JSON data
         const fetchPortfolioData = async () => {
+            if (!hasApiBackend) {
+                return;
+            }
+
             try {
                 const response = await fetch(apiUrl('/api/portfolio-data'));
                 if (response.ok) {
