@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: noutayla-portfolio-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    healthCheckPath: /api/health
+    envVars:
+      - key: FLASK_DEBUG
+        value: "false"
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USE_TLS
+        value: "true"
+      - key: SMTP_USE_SSL
+        value: "false"
+      - key: SMTP_USERNAME
+        value: noutaylanefzaoui@gmail.com
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: MAIL_TO_EMAIL
+        value: noutaylanefzaoui@gmail.com
+      - key: MAIL_FROM_EMAIL
+        value: noutaylanefzaoui@gmail.com
+      - key: MAIL_FROM_NAME
+        value: Noutayla Portfolio
+      - key: CORS_ORIGINS
+        sync: false
