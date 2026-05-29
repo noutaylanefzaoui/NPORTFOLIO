@@ -70,7 +70,7 @@ const Contact = ({ profileData }) => {
             ...formData
         });
 
-        const response = await fetch('/', {
+        const response = await fetch('/forms.html', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -79,7 +79,7 @@ const Contact = ({ profileData }) => {
         });
 
         if (!response.ok) {
-            throw new Error('Netlify form submission failed.');
+            throw new Error(`Netlify form submission failed (${response.status}).`);
         }
     };
 
@@ -211,6 +211,7 @@ const Contact = ({ profileData }) => {
                             onSubmit={handleSubmit}
                             className="contact-form"
                             name="contact"
+                            method="POST"
                             data-netlify="true"
                             data-netlify-honeypot="bot-field"
                         >
