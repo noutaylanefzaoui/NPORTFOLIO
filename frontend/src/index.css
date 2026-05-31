@@ -548,6 +548,23 @@ body.light-mode .shape {
     margin-bottom: 16px;
 }
 
+.hero-title-script {
+    display: inline-block;
+    color: var(--accent);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.18em;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 0.85;
+    letter-spacing: 0;
+    margin-right: 0.02em;
+    transform: translateY(0.04em) rotate(-4deg);
+}
+
+.hero-title-rest {
+    display: inline-block;
+}
+
 .hero-subtitle-container {
     height: 48px;
     display: flex;
