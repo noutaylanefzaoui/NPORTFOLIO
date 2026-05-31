@@ -153,33 +153,6 @@ img {
     padding: 120px 0;
 }
 
-.section-background {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-    background-color: var(--bg-primary);
-}
-
-.section-background-radial {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle 560px at 50% 200px, rgba(var(--accent-rgb), 0.24), transparent 70%);
-}
-
-.section-background-grid {
-    position: absolute;
-    inset: 0;
-    opacity: 0.34;
-    background-image:
-        linear-gradient(to right, rgba(var(--accent-rgb), 0.12) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(var(--accent-rgb), 0.12) 1px, transparent 1px);
-    background-size: 18px 18px;
-    mask-image: radial-gradient(circle at 50% 50%, #000 68%, transparent 100%);
-    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 68%, transparent 100%);
-}
-
 .section-header {
     margin-bottom: 60px;
     max-width: 600px;
@@ -525,7 +498,6 @@ body.light-mode .mobile-drawer {
     padding: 120px 0 60px 0;
     overflow: hidden;
     z-index: 2;
-    background-color: var(--bg-primary);
 }
 
 .background-paths {
