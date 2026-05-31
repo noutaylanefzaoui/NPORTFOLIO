@@ -3,6 +3,9 @@ import { Mail, Phone, MapPin, DownloadCloud, Send, CheckCircle, AlertCircle } fr
 import confetti from 'canvas-confetti';
 import { apiUrl, useNetlifyForms } from '../api';
 
+const NETLIFY_FORM_POST_PATH = '/';
+const NETLIFY_FORM_SUCCESS_PATH = '/success.html';
+
 // Local SVG component for GitHub to bypass Lucide icon library restriction
 const GithubIcon = ({ size = 18, ...props }) => (
     <svg 
@@ -70,7 +73,7 @@ const Contact = ({ profileData }) => {
             ...formData
         });
 
-        const response = await fetch('/', {
+        const response = await fetch(NETLIFY_FORM_POST_PATH, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -212,7 +215,7 @@ const Contact = ({ profileData }) => {
                             className="contact-form"
                             name="contact"
                             method="POST"
-                            action="/"
+                            action={NETLIFY_FORM_SUCCESS_PATH}
                             netlify="true"
                             data-netlify="true"
                             netlify-honeypot="bot-field"
