@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ChevronDown } from 'lucide-react';
+import { MagneticButton } from '@/components/ui/magnetic-button';
 
 const Hero = ({ data }) => {
     const rotatingTextRef = useRef(null);
@@ -47,7 +48,7 @@ const Hero = ({ data }) => {
     };
 
     return (
-        <section id="hero" class="hero-section">
+        <section id="hero" className="hero-section">
             <div className="hero-bg-shapes">
                 <div className="shape shape-1"></div>
                 <div className="shape shape-2"></div>
@@ -66,12 +67,16 @@ const Hero = ({ data }) => {
                 </p>
 
                 <div className="hero-ctas">
-                    <a href="#projects" className="btn btn-primary" onClick={(e) => handleScrollTo(e, 'projects')}>
-                        View Projects
-                    </a>
-                    <a href="#contact" className="btn btn-secondary" onClick={(e) => handleScrollTo(e, 'contact')}>
-                        Contact Me
-                    </a>
+                    <MagneticButton>
+                        <a href="#projects" className="btn btn-primary" onClick={(e) => handleScrollTo(e, 'projects')}>
+                            View Projects
+                        </a>
+                    </MagneticButton>
+                    <MagneticButton>
+                        <a href="#contact" className="btn btn-secondary" onClick={(e) => handleScrollTo(e, 'contact')}>
+                            Contact Me
+                        </a>
+                    </MagneticButton>
                 </div>
 
                 <div className="scroll-down" onClick={(e) => handleScrollTo(e, 'about')}>

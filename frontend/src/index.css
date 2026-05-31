@@ -541,6 +541,10 @@ body.light-mode .shape {
     margin-bottom: 60px;
 }
 
+.hero-ctas .magnetic-button {
+    flex-shrink: 0;
+}
+
 /* CTAs Buttons */
 .btn {
     display: inline-flex;
@@ -1664,6 +1668,10 @@ body.light-mode .shape {
         flex-direction: column;
         width: 100%;
         gap: 12px;
+    }
+
+    .hero-ctas .magnetic-button {
+        width: 100%;
     }
     
     .timeline {
