@@ -7,7 +7,7 @@ import { BackgroundPaths } from '@/components/ui/background-paths';
 const Hero = ({ data }) => {
     const rotatingTextRef = useRef(null);
     const heroName = data?.name || "Noutayla Nefzaoui";
-    const [firstLetter, ...restName] = heroName;
+    const heroNameWords = heroName.trim().split(/\s+/);
 
     useEffect(() => {
         if (!rotatingTextRef.current) return;
@@ -56,8 +56,12 @@ const Hero = ({ data }) => {
             <div className="container hero-container">
                 <span className="hero-greeting">Hello, I'm</span>
                 <h1 className="hero-title" aria-label={heroName}>
-                    <span className="hero-title-script" aria-hidden="true">{firstLetter}</span>
-                    <span className="hero-title-rest" aria-hidden="true">{restName.join('')}</span>
+                    {heroNameWords.map((word, index) => (
+                        <span className="hero-title-word" aria-hidden="true" key={`${word}-${index}`}>
+                            <span className="hero-title-script">{word.charAt(0)}</span>
+                            <span className="hero-title-rest">{word.slice(1)}</span>
+                        </span>
+                    ))}
                 </h1>
                 
                 {/* Rotating Subtitle */}
