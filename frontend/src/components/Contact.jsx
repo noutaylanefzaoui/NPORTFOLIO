@@ -70,6 +70,7 @@ const Contact = ({ profileData }) => {
     const submitNetlifyForm = async () => {
         const encodedData = new URLSearchParams({
             'form-name': 'contact',
+            'bot-field': '',
             ...formData
         });
 
@@ -202,7 +203,7 @@ const Contact = ({ profileData }) => {
                             <a href="https://github.com/noutaylanefzaoui" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                                 <GithubIcon size={18} />
                             </a>
-                            <a href="https://linkedin.com/in/noutaylanefzaoui" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/in/noutayla-nefzaoui-64454b331" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                                 <LinkedinIcon size={18} />
                             </a>
                         </div>

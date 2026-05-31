@@ -22,10 +22,9 @@ const Education = ({ educationData, extracurricularsData }) => {
                         <p className="edu-detail">
                             <strong>{educationData?.[0]?.focus || "IT Major & Marketing Minor"}</strong>
                         </p>
-                        <p className="edu-desc">
-                            {educationData?.[0]?.desc || 
-                            "Focusing on secure programming systems and corporate marketing frameworks. Selected coursework: Web Applications development, relational databases (SQL), procedural logic (C), and object-oriented systems (Java)."}
-                        </p>
+                        {educationData?.[0]?.desc && (
+                            <p className="edu-desc">{educationData[0].desc}</p>
+                        )}
                     </div>
 
                     {/* Degree 2 */}
@@ -39,10 +38,9 @@ const Education = ({ educationData, extracurricularsData }) => {
                         <p className="edu-detail">
                             <strong>{educationData?.[1]?.focus || "Specialization: Experimental Sciences"}</strong>
                         </p>
-                        <p className="edu-desc">
-                            {educationData?.[1]?.desc || 
-                            "Rigorous training in foundational logic, mathematics, physics, and biological sciences, graduating with strong analytical skills."}
-                        </p>
+                        {educationData?.[1]?.desc && (
+                            <p className="edu-desc">{educationData[1].desc}</p>
+                        )}
                     </div>
                 </div>
 

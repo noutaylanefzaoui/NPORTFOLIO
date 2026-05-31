@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <form name="contact" method="POST" action="/success.html" data-netlify="true" netlify-honeypot="bot-field" data-netlify-honeypot="bot-field" hidden>
+    <form class="netlify-form-definition" name="contact" method="POST" action="/success.html" data-netlify="true" netlify-honeypot="bot-field" data-netlify-honeypot="bot-field" aria-hidden="true">
         <input type="hidden" name="form-name" value="contact">
         <input type="text" name="name">
         <input type="email" name="email">
@@ -30,6 +30,18 @@
         <textarea name="message"></textarea>
         <input type="text" name="bot-field">
     </form>
+    <style>
+        .netlify-form-definition {
+            position: absolute;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            border: 0;
+        }
+    </style>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
 </body>

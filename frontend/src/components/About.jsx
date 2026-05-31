@@ -15,7 +15,7 @@ const About = ({ profileData, skillsData }) => {
                         <h3 className="card-title-main">My Story</h3>
                         <p className="bio-text">
                             {profileData?.bio || 
-                            "I am an enthusiastic IT student (Business Administration at Tunis Business School) with a strong interest in software development and digital systems. Comfortable working across Java, SQL, JavaScript, HTML/CSS, and C."}
+                            "I'm Noutayla, a student at Tunis Business School, born and raised in Tunis. I've always been the kind of person who's drawn to both creative and analytical challenges."}
                         </p>
                         <div className="strengths-container">
                             <span className="strength-tag">

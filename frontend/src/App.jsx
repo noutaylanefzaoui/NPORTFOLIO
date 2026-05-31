@@ -23,8 +23,8 @@ const FALLBACK_DATA = {
         phone: "+216 29 015 861",
         location: "El Mourouj, Tunis",
         nationality: "Tunisian",
-        bio: "I am an enthusiastic IT student at Tunis Business School with a strong interest in software development and digital systems. Comfortable working across Java, SQL, JavaScript, HTML/CSS, and C.",
-        short_bio: "Bridging technical logic and creative vision. Specialized in software development and digital marketing strategies."
+        bio: "I'm Noutayla, a student at Tunis Business School, born and raised in Tunis. I've always been the kind of person who's drawn to both creative and analytical challenges.",
+        short_bio: "Bridging technical logic and creative vision. Passionate about combining creativity and technology to develop innovative digital solutions."
     },
     skills: {
         it: ["Java", "SQL", "HTML/CSS/JS", "C Language", "Databases", "REST APIs"],
@@ -140,15 +140,13 @@ const FALLBACK_DATA = {
             degree: "B.Sc. Business Administration",
             school: "Tunis Business School",
             date: "2023 – 2027 (in progress)",
-            focus: "IT Major",
-            desc: "Focusing on secure programming systems and corporate marketing frameworks. Selected coursework: Web Applications development, relational databases (SQL), procedural logic (C), and object-oriented systems (Java)."
+            focus: "IT Major"
         },
         {
             degree: "Baccalaureate",
             school: "High School Al Athar",
             date: "2019 – 2023",
-            focus: "Experimental Sciences",
-            desc: "Rigorous training in foundational logic, mathematics, physics, and biological sciences, graduating with strong analytical skills."
+            focus: "Experimental Sciences"
         }
     ],
     extracurriculars: [

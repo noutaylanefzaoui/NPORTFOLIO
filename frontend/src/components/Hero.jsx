@@ -62,7 +62,7 @@ const Hero = ({ data }) => {
                 </div>
                 
                 <p className="hero-desc">
-                    {data?.short_bio || "Bridging technical logic and creative vision. Specialized in software development and digital marketing strategies."}
+                    {data?.short_bio || "Bridging technical logic and creative vision. Passionate about combining creativity and technology to develop innovative digital solutions."}
                 </p>
 
                 <div className="hero-ctas">
