@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ChevronDown } from 'lucide-react';
 import { MagneticButton } from '@/components/ui/magnetic-button';
+import { BackgroundPaths } from '@/components/ui/background-paths';
 
 const Hero = ({ data }) => {
     const rotatingTextRef = useRef(null);
@@ -49,10 +50,7 @@ const Hero = ({ data }) => {
 
     return (
         <section id="hero" className="hero-section">
-            <div className="hero-bg-shapes">
-                <div className="shape shape-1"></div>
-                <div className="shape shape-2"></div>
-            </div>
+            <BackgroundPaths />
             <div className="container hero-container">
                 <span className="hero-greeting">Hello, I'm</span>
                 <h1 className="hero-title">{data?.name || "Noutayla Nefzaoui"}</h1>
