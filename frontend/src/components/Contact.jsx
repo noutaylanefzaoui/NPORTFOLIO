@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, DownloadCloud, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { apiUrl, useNetlifyForms } from '../api';
+import { MagneticDock } from '@/components/ui/magnetic-dock';
 
 const NETLIFY_FORM_POST_PATH = '/';
 const NETLIFY_FORM_SUCCESS_PATH = '/success.html';
@@ -46,6 +47,19 @@ const LinkedinIcon = ({ size = 18, ...props }) => (
 );
 
 const Contact = ({ profileData }) => {
+    const socialItems = [
+        {
+            label: 'GitHub',
+            href: 'https://github.com/noutaylanefzaoui',
+            icon: <GithubIcon size={22} />
+        },
+        {
+            label: 'LinkedIn',
+            href: 'https://www.linkedin.com/in/noutayla-nefzaoui-64454b331',
+            icon: <LinkedinIcon size={21} />
+        }
+    ];
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -199,14 +213,7 @@ const Contact = ({ profileData }) => {
                         </div>
 
                         {/* Social Icons */}
-                        <div className="social-links">
-                            <a href="https://github.com/noutaylanefzaoui" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                                <GithubIcon size={18} />
-                            </a>
-                            <a href="https://www.linkedin.com/in/noutayla-nefzaoui-64454b331" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                                <LinkedinIcon size={18} />
-                            </a>
-                        </div>
+                        <MagneticDock items={socialItems} />
                     </div>
 
                     {/* Contact Form */}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
+import { MenuToggleIcon } from '@/components/ui/menu-toggle-icon';
 
 const Navbar = ({ theme, toggleTheme }) => {
     const [scrolled, setScrolled] = useState(false);
@@ -32,13 +33,16 @@ const Navbar = ({ theme, toggleTheme }) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const toggleDrawer = () => {
-        setDrawerOpen(!drawerOpen);
-        if (!drawerOpen) {
-            document.body.classList.add('overflow-hidden');
-        } else {
+    useEffect(() => {
+        document.body.classList.toggle('overflow-hidden', drawerOpen);
+
+        return () => {
             document.body.classList.remove('overflow-hidden');
-        }
+        };
+    }, [drawerOpen]);
+
+    const toggleDrawer = () => {
+        setDrawerOpen((open) => !open);
     };
 
     const handleLinkClick = (e, targetId) => {
@@ -66,7 +70,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
     return (
         <>
-            <header className={`navbar ${scrolled ? 'scrolled' : ''}`} id="navbar">
+            <header className={`navbar ${scrolled ? 'scrolled' : ''} ${drawerOpen ? 'drawer-active' : ''}`} id="navbar">
                 <div className="nav-container">
                     <a href="#hero" className="nav-logo" onClick={(e) => handleLinkClick(e, 'hero')}>
                         Noutayla<span className="dot">.</span>
@@ -104,11 +108,10 @@ const Navbar = ({ theme, toggleTheme }) => {
                         <button 
                             className={`hamburger ${drawerOpen ? 'open' : ''}`} 
                             onClick={toggleDrawer}
-                            aria-label="Open navigation menu"
+                            aria-label={drawerOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                            aria-expanded={drawerOpen}
                         >
-                            <span className="bar"></span>
-                            <span className="bar"></span>
-                            <span className="bar"></span>
+                            <MenuToggleIcon open={drawerOpen} />
                         </button>
                     </div>
                 </div>

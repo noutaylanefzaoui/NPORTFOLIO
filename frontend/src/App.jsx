@@ -7,6 +7,7 @@ import Experience from './components/Experience';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { SectionBackground } from '@/components/ui/section-background';
 import { apiUrl, hasApiBackend } from './api';
 import { ArrowUp } from 'lucide-react';
 import gsap from 'gsap';
@@ -313,6 +314,7 @@ function App() {
 
             {/* 4. Assembled Layout */}
             <Navbar theme={theme} toggleTheme={toggleTheme} />
+            <SectionBackground />
             <main>
                 <Hero data={portfolioData?.profile} />
                 <About profileData={portfolioData?.profile} skillsData={portfolioData?.skills} />
