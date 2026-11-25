@@ -203,15 +203,12 @@ const Contact = ({ profileData }) => {
                             </div>
                         </div>
 
-                        {/* Resumes Download */}
+                        {/* Resume download */}
                         <div className="resumes-download-box">
-                            <h4>Download Resumes</h4>
+                            <h4>Download resume</h4>
                             <div className="download-btns">
-                                <a href="/docs/CV_Noutayla_IT.pdf" download className="btn btn-download">
-                                    <DownloadCloud size={16} /> IT Resume (PDF)
-                                </a>
-                                <a href="/docs/CV_Noutayla_Marketing.pdf" download className="btn btn-download">
-                                    <DownloadCloud size={16} /> Marketing Resume (PDF)
+                                <a href="/docs/Resume.pdf" download="Resume.pdf" className="btn btn-download">
+                                    <DownloadCloud size={16} /> Resume
                                 </a>
                             </div>
                         </div>
