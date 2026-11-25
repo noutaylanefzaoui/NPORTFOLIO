@@ -96,42 +96,92 @@ const FALLBACK_DATA = {
         ]
     },
     experience: {
-        it: [],
+        it: [
+            {
+                role: "Unintended CTF",
+                bullets: [
+                    "Participated in Unintended CTF, solving GEOINT and IMINT challenges and capturing flags within a competitive timeframe"
+                ],
+                tags: ["GEOINT", "IMINT", "CTF"]
+            }
+        ],
         marketing: [
-            {
-                role: "Marketing Manager & Social Media Manager",
-                company: "SpeakDuo & @Remote",
-                date: "2025 - 2026",
-                desc: "Directed full branding and digital campaign workflows. Supervised cross-functional teams on content creation, organic social channels expansion, and audience messaging.",
-                tags: ["Brand Strategy", "Social Media Strategy"]
-            },
-            {
-                role: "Marketing Intern",
-                company: "Malla Marketing Agency",
-                date: "2026",
-                desc: "Contributed to active client campaigns, supported content layout writing, and performed organic research for diverse client portfolios.",
-                tags: ["Content Marketing", "Client Relations"]
-            },
-            {
-                role: "Marketing Assistant Intern",
-                company: "SpeakDuo & @Remote",
-                date: "2024 - 2025",
-                desc: "Assisted with content writing and scheduled organic postings. Tracked customer engagement rates across social platforms to adjust layout trends.",
-                tags: ["Content Creation", "Copywriting"]
-            },
             {
                 role: "Co-founder & Videographer",
                 company: "C213",
-                date: "2023 - 2025",
-                desc: "Co-founded a dynamic creative project handling commercial videography, graphic layout, and brand storytelling for local enterprises.",
-                tags: ["Videography", "Creative Direction"]
+                location: "El Mourouj 3",
+                date: "2023 – 2024",
+                bullets: [
+                    "Co-founded a creative media project with two partners, building the brand identity from scratch",
+                    "Grew an organic audience of 2,900+ followers (Instagram and TikTok) with 18.4K likes",
+                    "Handled the full pipeline: concept, filming, video and graphic editing, distribution"
+                ],
+                tags: ["Brand Identity", "Videography", "Video & Graphic Editing", "Organic Growth"]
+            },
+            {
+                role: "Marketing Assistant Intern | Marketing Manager",
+                company: "SpeakDuo",
+                location: "Remote",
+                date: "2024 – 2026",
+                bullets: [
+                    "Promoted from intern to manager, running the social media of a language learning platform for 18+ months",
+                    "Designed and produced visual content",
+                    "Supported SEO and wrote copy for landing pages and email campaigns"
+                ],
+                tags: ["Social Media Management", "Visual Content", "SEO", "Copywriting"]
             },
             {
                 role: "Marketing Intern",
                 company: "TED University",
+                location: "On-site",
                 date: "2025",
-                desc: "Designed and printed communication materials, promoting high-profile university speaker events and managing speaker outreach networks.",
-                tags: ["Event Marketing", "Speaker Promotion"]
+                bullets: [
+                    "Contributed to the UI/UX redesign of the Shift Up agency website",
+                    "Ran competitor analysis on positioning and digital strategy",
+                    "Helped plan and manage Google Ads campaigns (keyword research, campaign structure, performance monitoring)"
+                ],
+                tags: ["UI/UX Redesign", "Competitor Analysis", "Google Ads"]
+            },
+            {
+                role: "Marketing Intern",
+                company: "Malla Marketing Agency",
+                location: "Hybrid",
+                date: "2026",
+                bullets: [
+                    "Produced short videos for client campaigns, used on social media stories and in paid advertising",
+                    "Prepared campaign reports and competitor analyses for client presentations"
+                ],
+                tags: ["Short-Form Video", "Paid Advertising", "Campaign Reporting"]
+            },
+            {
+                role: "Marketing Intern",
+                company: "Icon Train Smarter",
+                location: "Remote",
+                date: "2026",
+                bullets: [
+                    "Created social media content for an AI-powered fitness app",
+                    "Adapted the tone and format of each post to the platform and audience"
+                ],
+                tags: ["Social Media Content", "AI Fitness", "Content Strategy"]
+            },
+            {
+                role: "Business Development Intern",
+                company: "Mobelite Tunisie",
+                location: "On-site",
+                date: "2026",
+                bullets: [
+                    "Built and enriched a database of 3,000+ verified B2B contacts using LinkedIn Sales Navigator and Hunter.io",
+                    "Cleaned and structured the data so the sales team could use it for outreach",
+                    "Identified and profiled target companies and decision-makers"
+                ],
+                tags: ["B2B Lead Gen", "Sales Navigator", "Hunter.io", "Data Enrichment"]
+            },
+            {
+                role: "Content Creator",
+                company: "",
+                date: "Present",
+                desc: "Create, edit and publish short-form videos on social media with a growing community",
+                tags: ["Short-Form Video", "Video Editing", "Community Growth"]
             }
         ]
     },
@@ -174,7 +224,7 @@ function App() {
     const [loading, setLoading] = useState(true);
     const [loadProgress, setLoadProgress] = useState(0);
     const [showBackToTop, setShowBackToTop] = useState(false);
-    
+
     const glowRef = useRef(null);
 
     // 1. Theme and Loading Setup
@@ -283,11 +333,11 @@ function App() {
         setTimeout(() => {
             const tl = gsap.timeline();
             tl.from(".hero-greeting", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" })
-              .from(".hero-title", { opacity: 0, y: 30, duration: 0.8, ease: "power3.out" }, "-=0.4")
-              .from(".hero-subtitle-container", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.5")
-              .from(".hero-desc", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.4")
-              .from(".hero-ctas", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.4")
-              .from(".scroll-down", { opacity: 0, y: 10, duration: 0.5, ease: "power3.out" }, "-=0.2");
+                .from(".hero-title", { opacity: 0, y: 30, duration: 0.8, ease: "power3.out" }, "-=0.4")
+                .from(".hero-subtitle-container", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.5")
+                .from(".hero-desc", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.4")
+                .from(".hero-ctas", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.4")
+                .from(".scroll-down", { opacity: 0, y: 10, duration: 0.5, ease: "power3.out" }, "-=0.2");
         }, 100);
     };
 
@@ -324,7 +374,7 @@ function App() {
             <Footer />
 
             {/* 5. Back to Top Button */}
-            <button 
+            <button
                 className={`back-to-top-btn ${showBackToTop ? 'visible' : ''}`}
                 onClick={handleBackToTop}
                 aria-label="Back to top"

@@ -1250,6 +1250,32 @@ body.light-mode .shape {
     margin-bottom: 20px;
 }
 
+.timeline-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding-left: 0;
+}
+
+.timeline-bullets li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.timeline-bullets li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-weight: 600;
+}
+
 .timeline-tags {
     display: flex;
     flex-wrap: wrap;

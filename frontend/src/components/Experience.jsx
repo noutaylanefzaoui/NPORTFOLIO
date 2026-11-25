@@ -26,6 +26,7 @@ const Experience = ({ experienceData }) => {
 
     const itExperience = experienceData?.it || [];
     const marketingExperience = experienceData?.marketing || [];
+    const activeExperience = activeTab === 'it' ? itExperience : marketingExperience;
 
     return (
         <section id="experience" className="experience-section section-padding">
@@ -82,41 +83,34 @@ const Experience = ({ experienceData }) => {
                         </div>
                     ) : (
                         <div className="timeline">
-                            {activeTab === 'it' ? (
-                                itExperience.map((exp, idx) => (
-                                    <div key={idx} className="timeline-item">
-                                        <div className="timeline-dot"></div>
-                                        <div className="timeline-content">
-                                            <span className="timeline-date">{exp.date}</span>
-                                            <h3>{exp.role}</h3>
-                                            <h4 className="company">{exp.company}</h4>
-                                            <p className="timeline-desc">{exp.desc}</p>
-                                            <div className="timeline-tags">
-                                                {exp.tags?.map((tag, i) => (
-                                                    <span key={i}>{tag}</span>
+                            {activeExperience.map((exp, idx) => (
+                                <div key={idx} className="timeline-item">
+                                    <div className="timeline-dot"></div>
+                                    <div className="timeline-content">
+                                        <span className="timeline-date">{exp.date}</span>
+                                        <h3>{exp.role}</h3>
+                                        {(exp.company || exp.location) && (
+                                            <h4 className="company">
+                                                {[exp.company, exp.location].filter(Boolean).join(' • ')}
+                                            </h4>
+                                        )}
+                                        {exp.bullets?.length > 0 ? (
+                                            <ul className="timeline-bullets">
+                                                {exp.bullets.map((bullet, i) => (
+                                                    <li key={i}>{bullet}</li>
                                                 ))}
-                                            </div>
+                                            </ul>
+                                        ) : (
+                                            <p className="timeline-desc">{exp.desc}</p>
+                                        )}
+                                        <div className="timeline-tags">
+                                            {exp.tags?.map((tag, i) => (
+                                                <span key={i}>{tag}</span>
+                                            ))}
                                         </div>
                                     </div>
-                                ))
-                            ) : (
-                                marketingExperience.map((exp, idx) => (
-                                    <div key={idx} className="timeline-item">
-                                        <div className="timeline-dot"></div>
-                                        <div className="timeline-content">
-                                            <span className="timeline-date">{exp.date}</span>
-                                            <h3>{exp.role}</h3>
-                                            <h4 className="company">{exp.company}</h4>
-                                            <p className="timeline-desc">{exp.desc}</p>
-                                            <div className="timeline-tags">
-                                                {exp.tags?.map((tag, i) => (
-                                                    <span key={i}>{tag}</span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))
-                            )}
+                                </div>
+                            ))}
                         </div>
                     )}
                 </div>
