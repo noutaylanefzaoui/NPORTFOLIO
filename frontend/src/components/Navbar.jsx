@@ -55,7 +55,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             const offsetTop = targetSection.offsetTop - 80;
             window.scrollTo({
                 top: offsetTop,
-                behavior: 'smooth'
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
             });
         }
     };
@@ -73,7 +73,8 @@ const Navbar = ({ theme, toggleTheme }) => {
             <header className={`navbar ${scrolled ? 'scrolled' : ''} ${drawerOpen ? 'drawer-active' : ''}`} id="navbar">
                 <div className="nav-container">
                     <a href="#hero" className="nav-logo" onClick={(e) => handleLinkClick(e, 'hero')}>
-                        Noutayla<span className="dot">.</span>
+                        <span className="nav-logo-mark" aria-hidden="true">N.</span>
+                        <span>Noutayla<span className="dot">.</span></span>
                     </a>
                     
                     {/* Desktop Menu */}
@@ -84,6 +85,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                                 href={`#${item.id}`} 
                                 className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
                                 onClick={(e) => handleLinkClick(e, item.id)}
+                                aria-current={activeSection === item.id ? 'location' : undefined}
                             >
                                 {item.label}
                             </a>
@@ -110,6 +112,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                             onClick={toggleDrawer}
                             aria-label={drawerOpen ? 'Close navigation menu' : 'Open navigation menu'}
                             aria-expanded={drawerOpen}
+                            aria-controls="mobile-drawer"
                         >
                             <MenuToggleIcon open={drawerOpen} />
                         </button>
@@ -118,7 +121,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             </header>
 
             {/* Mobile Drawer Menu */}
-            <div className={`mobile-drawer ${drawerOpen ? 'open' : ''}`}>
+            <div className={`mobile-drawer ${drawerOpen ? 'open' : ''}`} id="mobile-drawer" aria-hidden={!drawerOpen}>
                 <nav className="drawer-menu">
                     {navItems.map((item) => (
                         <a 

@@ -139,7 +139,7 @@ const Contact = ({ profileData }) => {
                 particleCount: 80,
                 spread: 60,
                 origin: { y: 0.8 },
-                colors: ['#f8c8dc', '#db4c7c', '#ffffff']
+                colors: ['#f54a89', '#d9c9ef', '#fffaf6']
             });
         } catch (error) {
             console.error('Submission error:', error);
@@ -152,17 +152,21 @@ const Contact = ({ profileData }) => {
     return (
         <section id="contact" className="contact-section section-padding">
             <div className="container">
+                <div className="section-eyebrow-row">
+                    <span className="section-eyebrow"><span>07</span> A good place to start</span>
+                    <span className="section-side-note">Open to ideas, conversations and collaborations.</span>
+                </div>
                 <div className="section-header">
-                    <span className="subheading">Get In Touch</span>
-                    <h2 className="section-title">Let's Connect</h2>
+                    <span className="subheading">Get in touch</span>
+                    <h2 className="section-title">Have a good<br /><em>idea?</em></h2>
                 </div>
 
                 <div className="contact-grid">
                     {/* Contact Info */}
                     <div className="contact-info-card">
-                        <h3>Drop Me a Line</h3>
+                        <h3>Tell me about it.</h3>
                         <p className="contact-subtitle">
-                            Interested in collaborating on a digital build or a campaign? Feel free to reach out. I am open to summer internship opportunities.
+                            Interested in a digital project, a creative campaign, or simply comparing notes? I’d love to hear from you.
                         </p>
 
                         <div className="contact-details">

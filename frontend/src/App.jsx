@@ -220,26 +220,45 @@ const FALLBACK_DATA = {
 
 function App() {
     const [portfolioData, setPortfolioData] = useState(FALLBACK_DATA);
-    const [theme, setTheme] = useState('dark');
+    const [theme, setTheme] = useState('light');
     const [loading, setLoading] = useState(true);
     const [loadProgress, setLoadProgress] = useState(0);
     const [showBackToTop, setShowBackToTop] = useState(false);
 
     const glowRef = useRef(null);
 
+    useEffect(() => {
+        const sections = [...document.querySelectorAll('.section-padding')];
+        if (!('IntersectionObserver' in window)) {
+            sections.forEach((section) => section.classList.add('section-visible'));
+            return undefined;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('section-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.04, rootMargin: '0px 0px -36px 0px' });
+
+        sections.forEach((section) => {
+            section.classList.add('section-animated');
+            observer.observe(section);
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
     // 1. Theme and Loading Setup
     useEffect(() => {
         // Theme initialization
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            setTheme(savedTheme);
-            document.body.className = savedTheme === 'light' ? 'light-mode' : 'dark-mode';
-        } else {
-            const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-            const initialTheme = prefersLight ? 'light' : 'dark';
-            setTheme(initialTheme);
-            document.body.className = initialTheme === 'light' ? 'light-mode' : 'dark-mode';
-        }
+        const initialTheme = savedTheme === 'dark' ? 'dark' : 'light';
+        setTheme(initialTheme);
+        document.body.classList.toggle('light-mode', initialTheme === 'light');
+        document.body.classList.toggle('dark-mode', initialTheme === 'dark');
 
         // Fetch dynamic portfolio JSON data
         const fetchPortfolioData = async () => {
@@ -317,27 +336,29 @@ function App() {
         const newTheme = theme === 'dark' ? 'light' : 'dark';
         setTheme(newTheme);
         localStorage.setItem('theme', newTheme);
-        document.body.className = newTheme === 'light' ? 'light-mode' : 'dark-mode';
+        document.body.classList.toggle('light-mode', newTheme === 'light');
+        document.body.classList.toggle('dark-mode', newTheme === 'dark');
     };
 
     const handleBackToTop = () => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth'
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
         });
     };
 
     // 3. GSAP Scrolling Entrance Reveals
     const initGSAPAnimations = () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         // Wait slightly for components rendering
         setTimeout(() => {
             const tl = gsap.timeline();
             tl.from(".hero-greeting", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" })
                 .from(".hero-title", { opacity: 0, y: 30, duration: 0.8, ease: "power3.out" }, "-=0.4")
-                .from(".hero-subtitle-container", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.5")
+                .from(".hero-positioning", { opacity: 0, y: 15, duration: 0.55, ease: "power3.out" }, "-=0.5")
                 .from(".hero-desc", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.4")
                 .from(".hero-ctas", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.4")
-                .from(".scroll-down", { opacity: 0, y: 10, duration: 0.5, ease: "power3.out" }, "-=0.2");
+                .from(".scroll-cue", { opacity: 0, y: 10, duration: 0.5, ease: "power3.out" }, "-=0.2");
         }, 100);
     };
 
@@ -366,7 +387,7 @@ function App() {
             <main>
                 <Hero data={portfolioData?.profile} />
                 <About profileData={portfolioData?.profile} skillsData={portfolioData?.skills} />
-                <Projects projectsData={portfolioData?.projects} />
+                <Projects projectsData={portfolioData?.projects} marketingExperience={portfolioData?.experience?.marketing} />
                 <Experience experienceData={portfolioData?.experience} />
                 <Education educationData={portfolioData?.education} extracurricularsData={portfolioData?.extracurriculars} />
                 <Contact profileData={portfolioData?.profile} />
